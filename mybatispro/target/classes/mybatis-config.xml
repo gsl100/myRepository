@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--properties 配置-->
+    <properties resource="db.properties">
+
+    </properties>
+    <!--
+        environments 用于数据源的配置
+        可以配置多个数据源 通过default指定哪个数据源
+    -->
+    <environments default="development">
+        <!--独立数据源配置 -->
+        <environment id="development">
+            <!--配置事务管理 默认jdbc数据管理-->
+            <transactionManager type="JDBC"/>
+            <!--具体数据源链接信息； type指定是否使用连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="product">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--配置 外部映射配置文件
+    在主配置中需要引入加载映射配置文件-->
+    <mappers>
+        <!--具体映射文件-->
+        <mapper resource="mapper/usersMapper.xml"/>
+    </mappers>
+</configuration>
